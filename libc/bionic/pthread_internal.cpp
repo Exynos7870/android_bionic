@@ -116,7 +116,7 @@ pthread_internal_t* __pthread_internal_find(pthread_t thread_id) {
   // Historically we'd return null, but
   if (bionic_get_application_target_sdk_version() >= __ANDROID_API_O__) {
 #ifdef ALLOWS_INVALID_PTHREAD
-    __libc_format_log(ANDROID_LOG_WARN, "libc", "invalid pthread_t %p passed to libc", thread);
+    async_safe_format_log(ANDROID_LOG_WARN, "libc", "invalid pthread_t %p passed to libc", thread);
 #else
     if (thread == nullptr) {
       // This seems to be a common mistake, and it's relatively harmless because
